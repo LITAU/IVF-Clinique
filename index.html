@@ -125,9 +125,10 @@
             overflow: hidden;
         }
 
-        .tableau-embed div {
+        .tableau-embed iframe {
             width: 100%;
             height: 100%;
+            border: none;
         }
 
         .tableau-embed h3 {
@@ -137,7 +138,7 @@
             text-align: center;
         }
 
-        .tableau-embed p {
+        .tableau-embed .description {
             font-size: 1rem;
             color: #666;
             text-align: center;
@@ -313,46 +314,46 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div>
-            <h1>Tableau-Powered Analytics</h1>
-            <p>Explore operative, administrative, and simulative insights through our interactive Tableau dashboards.</p>
+            <h1>Tableau Analytics Platform</h1>
+            <p>Explore operative, administrative, and simulative dashboards for data-driven insights.</p>
         </div>
     </section>
 
     <!-- Dashboard Section -->
     <section class="dashboard-section" id="dashboard">
-        <h2>Interactive Tableau Dashboards</h2>
-        <p class="subtitle">Dive into our specialized visualizations for comprehensive data analysis</p>
+        <h2>Tableau Dashboards</h2>
+        <p class="subtitle">Interactive visualizations for operational, administrative, and simulative analytics</p>
         <div class="tableau-container">
             <div class="tableau-embed">
                 <h3>Operative Dashboard</h3>
-                <p>Visualizes real-time operational metrics, such as daily task completion rates and resource utilization, to optimize on-the-ground processes.</p>
-                <div id="operativeViz"></div>
+                <p class="description">This dashboard tracks real-time operational metrics, including task completion rates, workforce efficiency, and resource utilization. Use the filters to analyze specific teams or time periods, identifying bottlenecks and optimizing daily workflows.</p>
+                <iframe src="https://public.tableau.com/views/ProjectOp/Operative?:language=en-US&:display_count=n&:origin=viz_share_link&:embed=true&:showVizHome=no" allowfullscreen></iframe>
             </div>
             <div class="tableau-embed">
                 <h3>Administrative Dashboard</h3>
-                <p>Displays managerial metrics like budget allocation, departmental performance, and compliance status to support strategic oversight.</p>
-                <div id="administrativeViz"></div>
+                <p class="description">Designed for managerial oversight, this dashboard displays budget allocations, departmental KPIs, and compliance metrics. Interact with charts to compare performance across departments and track strategic goals.</p>
+                <iframe src="https://public.tableau.com/views/ProjectAd/Administrative?:language=en-US&:display_count=n&:origin=viz_share_link&:embed=true&:showVizHome=no" allowfullscreen></iframe>
             </div>
             <div class="tableau-embed">
                 <h3>Simulative Dashboard</h3>
-                <p>Provides forecasting and scenario analysis, showing projected outcomes based on variable inputs to aid in planning and risk assessment.</p>
-                <div id="simulativeViz"></div>
+                <p class="description">This dashboard enables forecasting through scenario analysis, showing projected outcomes based on variable inputs like market trends or resource changes. Adjust parameters to assess risks and plan strategically.</p>
+                <iframe src="https://public.tableau.com/views/Project_17529281897820/Simulative?:language=en-US&:display_count=n&:origin=viz_share_link&:embed=true&:showVizHome=no" allowfullscreen></iframe>
             </div>
         </div>
 
         <!-- Hierarchy Levels -->
         <h2>Data Hierarchy Levels</h2>
-        <p class="subtitle">Understand the structure of our analytics approach</p>
+        <p class="subtitle">Structured analytics across three key aspects</p>
         <div class="hierarchy-levels">
             <div class="level-card">
                 <i class="fas fa-chart-pie"></i>
                 <h3>Administrative Level</h3>
-                <p>High-level insights for strategic planning and managerial oversight.</p>
+                <p>Strategic insights for executive oversight and long-term planning.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-bar"></i>
                 <h3>Simulative Level</h3>
-                <p>Predictive analytics for forecasting and scenario planning.</p>
+                <p>Predictive analytics for forecasting and scenario evaluation.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-line"></i>
@@ -364,20 +365,20 @@
 
     <!-- Interactive Explanation Section -->
     <section class="explanation-section" id="insights">
-        <h2>Dashboard Interpretations</h2>
-        <p class="subtitle">Detailed guidance on understanding and utilizing each Tableau dashboard</p>
+        <h2>Detailed Dashboard Insights</h2>
+        <p class="subtitle">In-depth guidance for interpreting and leveraging each Tableau visualization</p>
         <div class="explanation-content">
             <div class="explanation-item">
-                <h3>Operative Dashboard Guide</h3>
-                <p>The Operative Dashboard tracks real-time metrics like task completion rates, employee productivity, and resource allocation. Use the interactive filters to drill down into specific teams or timeframes, enabling quick identification of bottlenecks and optimization opportunities.</p>
+                <h3>Operative Dashboard Insights</h3>
+                <p>The Operative Dashboard focuses on real-time operational efficiency. Key features include bar charts for task completion rates, line graphs for workforce productivity trends, and pie charts for resource allocation. Use the interactive filters to select specific departments or date ranges, helping managers identify underperforming areas and streamline daily operations.</p>
             </div>
             <div class="explanation-item">
-                <h3>Administrative Dashboard Guide</h3>
-                <p>This dashboard provides a managerial overview, displaying key metrics such as budget utilization, departmental KPIs, and compliance trends. Hover over charts to view detailed breakdowns and use dropdowns to compare performance across departments for informed decision-making.</p>
+                <h3>Administrative Dashboard Insights</h3>
+                <p>This dashboard provides a managerial overview with visualizations like stacked bar charts for budget distribution, heatmaps for departmental performance, and trend lines for compliance metrics. Click on chart elements to drill down into specific data points, enabling executives to monitor strategic alignment and make informed resource allocation decisions.</p>
             </div>
             <div class="explanation-item">
-                <h3>Simulative Dashboard Guide</h3>
-                <p>The Simulative Dashboard offers predictive insights through scenario analysis. Adjust variables like market conditions or resource inputs to see projected outcomes. This tool helps in strategic planning by visualizing potential risks and opportunities based on data-driven forecasts.</p>
+                <h3>Simulative Dashboard Insights</h3>
+                <p>The Simulative Dashboard supports predictive analytics with scenario-based visualizations, including line charts for projected revenue and scatter plots for risk analysis. Adjust input parameters like market growth rates or staffing levels to see how changes impact outcomes, aiding in strategic planning and risk mitigation.</p>
             </div>
         </div>
     </section>
@@ -388,45 +389,7 @@
         <p><a href="mailto:info@analyticshub.com">Contact Us</a> | <a href="#privacy">Privacy Policy</a></p>
     </footer>
 
-    <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
     <script>
-        // Initialize Tableau Visualizations
-        function initVizzes() {
-            const options = {
-                width: "100%",
-                height: "100%",
-                hideTabs: true,
-                hideToolbar: true,
-                onFirstInteractive: function () {
-                    console.log("Tableau visualization loaded.");
-                }
-            };
-
-            // Operative Dashboard
-            new tableau.Viz(
-                document.getElementById("operativeViz"),
-                "https://public.tableau.com/views/ProjectOp/Operative?:language=en-US&:display_count=n&:origin=viz_share_link",
-                options
-            );
-
-            // Administrative Dashboard
-            new tableau.Viz(
-                document.getElementById("administrativeViz"),
-                "https://public.tableau.com/views/ProjectAd/Administrative?:language=en-US&:display_count=n&:origin=viz_share_link",
-                options
-            );
-
-            // Simulative Dashboard
-            new tableau.Viz(
-                document.getElementById("simulativeViz"),
-                "https://public.tableau.com/views/Project_17529281897820/Simulative?:language=en-US&:display_count=n&:origin=viz_share_link",
-                options
-            );
-        }
-
-        // Load Tableau visualizations on page load
-        window.onload = initVizzes;
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
