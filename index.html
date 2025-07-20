@@ -110,6 +110,13 @@
             margin-bottom: 2rem;
         }
 
+        .tableau-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
         .tableau-embed {
             position: relative;
             padding-bottom: 56.25%;
@@ -117,7 +124,6 @@
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
         }
 
         .tableau-embed div {
@@ -126,6 +132,20 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        .tableau-embed h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .tableau-embed p {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 1rem;
         }
 
         /* Hierarchy Levels */
@@ -268,6 +288,10 @@
                 margin-left: 0;
             }
 
+            .tableau-container {
+                grid-template-columns: 1fr;
+            }
+
             .hierarchy-levels {
                 grid-template-columns: 1fr;
             }
@@ -291,57 +315,71 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div>
-            <h1>Explore Data with Tableau Analytics</h1>
-            <p>Discover actionable insights through our integrated Tableau visualizations and stay informed with our interactive guides.</p>
+            <h1>Advanced Tableau Analytics</h1>
+            <p>Unlock insights with our integrated Tableau dashboards across operative, administrative, and simulative analytics.</p>
         </div>
     </section>
 
     <!-- Dashboard Section -->
     <section class="dashboard-section" id="dashboard">
-        <h2>Tableau Data Dashboard</h2>
-        <p class="subtitle">Interactive visualizations powered by Tableau Public</p>
-        <div class="tableau-embed">
-            <div id="tableauViz"></div>
+        <h2>Tableau Analytics Dashboards</h2>
+        <p class="subtitle">Explore three specialized Tableau visualizations for comprehensive insights</p>
+        <div class="tableau-container">
+            <div class="tableau-embed">
+                <h3>Operative Dashboard</h3>
+                <p>Real-time insights into daily operations</p>
+                <div id="operativeViz"></div>
+            </div>
+            <div class="tableau-embed">
+                <h3>Administrative Dashboard</h3>
+                <p>Strategic oversight for managerial decisions</p>
+                <div id="administrativeViz"></div>
+            </div>
+            <div class="tableau-embed">
+                <h3>Simulative Dashboard</h3>
+                <p>Forecasting and scenario analysis</p>
+                <div id="simulativeViz"></div>
+            </div>
         </div>
 
         <!-- Hierarchy Levels -->
         <h2>Data Hierarchy Overview</h2>
-        <p class="subtitle">Explore data insights across three levels of analysis</p>
+        <p class="subtitle">Understand insights across three levels of analysis</p>
         <div class="hierarchy-levels">
             <div class="level-card">
                 <i class="fas fa-chart-pie"></i>
                 <h3>Strategic Level</h3>
-                <p>Executive insights for high-level decision-making and long-term planning.</p>
+                <p>Executive insights for long-term planning and decision-making.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-bar"></i>
                 <h3>Tactical Level</h3>
-                <p>Departmental metrics to optimize mid-term strategies and operations.</p>
+                <p>Departmental metrics to optimize mid-term strategies.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-line"></i>
                 <h3>Operational Level</h3>
-                <p>Detailed analytics for daily processes and performance tracking.</p>
+                <p>Detailed analytics for daily process optimization.</p>
             </div>
         </div>
     </section>
 
     <!-- Interactive Explanation Section -->
     <section class="explanation-section" id="insights">
-        <h2>Insights & Resources</h2>
-        <p class="subtitle">Guides and tips to maximize your data analytics experience</p>
+        <h2>Insights & Guidance</h2>
+        <p class="subtitle">Resources to enhance your data analytics experience</p>
         <div class="explanation-content">
             <div class="explanation-item">
-                <h3>Mastering Tableau Dashboards</h3>
-                <p>Learn how to create and interpret interactive Tableau visualizations effectively.</p>
+                <h3>Interpreting Operative Data</h3>
+                <p>Guide to understanding real-time operational metrics in Tableau.</p>
             </div>
             <div class="explanation-item">
-                <h3>2025 Data Trends</h3>
-                <p>Stay ahead with the latest trends shaping data analytics across industries.</p>
+                <h3>Administrative Analytics Tips</h3>
+                <p>Best practices for leveraging administrative dashboards for decision-making.</p>
             </div>
             <div class="explanation-item">
-                <h3>Actionable Insights</h3>
-                <p>Practical tips for turning data into strategic business decisions.</p>
+                <h3>Simulative Forecasting</h3>
+                <p>How to use simulative dashboards for predictive analytics.</p>
             </div>
         </div>
     </section>
@@ -352,12 +390,10 @@
         <p><a href="mailto:info@analyticshub.com">Contact Us</a> | <a href="#privacy">Privacy Policy</a></p>
     </footer>
 
-    <script src="https://public.tableau.com/app/profile/.64367833/vizzes"></script>
+    <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
     <script>
-        // Initialize Tableau Visualization
-        function initViz() {
-            const containerDiv = document.getElementById("tableauViz");
-            const vizUrl = "https://public.tableau.com/views/SuperstoreSalesOverview/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link";
+        // Initialize Tableau Visualizations
+        function initVizzes() {
             const options = {
                 width: "100%",
                 height: "100%",
@@ -367,11 +403,31 @@
                     console.log("Tableau visualization loaded.");
                 }
             };
-            new tableau.Viz(containerDiv, vizUrl, options);
+
+            // Operative Dashboard
+            new tableau.Viz(
+                document.getElementById("operativeViz"),
+                "https://public.tableau.com/views/ProjectOp/Operative?:language=en-US&:display_count=n&:origin=viz_share_link",
+                options
+            );
+
+            // Administrative Dashboard
+            new tableau.Viz(
+                document.getElementById("administrativeViz"),
+                "https://public.tableau.com/views/ProjectAd/Administrative?:language=en-US&:display_count=n&:origin=viz_share_link",
+                options
+            );
+
+            // Simulative Dashboard
+            new tableau.Viz(
+                document.getElementById("simulativeViz"),
+                "https://public.tableau.com/views/Project_17529281897820/Simulative?:language=en-US&:display_count=n&:origin=viz_share_link",
+                options
+            );
         }
 
-        // Load Tableau viz on page load
-        window.onload = initViz;
+        // Load Tableau visualizations on page load
+        window.onload = initVizzes;
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
