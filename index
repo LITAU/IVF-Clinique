@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Toolbar */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #6e45e2;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #6e45e2;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out 0.3s;
+            animation-fill-mode: backwards;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-section h2 {
+            font-size: 2.2rem;
+            color: #6e45e2;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-section .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tableau-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .tableau-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Hierarchy Levels */
+        .hierarchy-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .level-card i {
+            font-size: 2.5rem;
+            color: #6e45e2;
+            margin-bottom: 1rem;
+        }
+
+        .level-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .level-card p {
+            color: #666;
+        }
+
+        /* Interactive Explanation Section */
+        .explanation-section {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .explanation-section h2 {
+            font-size: 2.2rem;
+            color: #6e45e2;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .explanation-section .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .explanation-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .explanation-item {
+            background: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .explanation-item:hover {
+            background: #e5e7eb;
+        }
+
+        .explanation-item h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .explanation-item p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: #88d3ce;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 0;
+            }
+
+            .hierarchy-levels {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Toolbar -->
+    <header>
+        <nav>
+            <div class="logo">Analytics Hub</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div>
+            <h1>Welcome to Our Data Analytics Platform</h1>
+            <p>Unlock powerful insights with our interactive Tableau dashboards and stay informed with real-time data explanations.</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard-section" id="dashboard">
+        <h2>Interactive Data Dashboard</h2>
+        <p class="subtitle">Explore our Tableau visualizations for comprehensive data insights</p>
+        <div class="tableau-embed">
+            <!-- Replace with your Tableau Public embed URL -->
+            <iframe src="https://public.tableau.com/views/ProjectAd/Administrative?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" frameborder="0"></iframe>
+        </div>
+
+        <!-- Hierarchy Levels -->
+        <div class="hierarchy-levels">
+            <div class="level-card">
+                <i class="fas fa-chart-pie"></i>
+                <h3>Strategic Level</h3>
+                <p>High-level KPIs and executive summaries for decision-makers.</p>
+            </div>
+            <div class="level-card">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Tactical Level</h3>
+                <p>Departmental metrics and operational insights for managers.</p>
+            </div>
+            <div class="level-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Operational Level</h3>
+                <p>Detailed analytics for day-to-day activities and processes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Explanation Section -->
+    <section class="explanation-section" id="insights">
+        <h2>Insights & Guidance</h2>
+        <p class="subtitle">Stay updated with data-driven news and actionable tips</p>
+        <div class="explanation-content">
+            <div class="explanation-item">
+                <h3>Understanding KPIs</h3>
+                <p>Learn how to interpret key performance indicators to drive business success.</p>
+            </div>
+            <div class="explanation-item">
+                <h3>Data Trends 2025</h3>
+                <p>Explore the latest trends in data analytics and their impact on your industry.</p>
+            </div>
+            <div class="explanation-item">
+                <h3>Optimizing Visualizations</h3>
+                <p>Tips for creating effective and engaging Tableau dashboards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2025 Analytics Hub. All rights reserved.</p>
+        <p><a href="mailto:info@analyticshub.com">Contact Us</a> | <a href="#privacy">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Interactive explanation toggle
+        document.querySelectorAll('.explanation-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+                const p = item.querySelector('p');
+                p.style.display = p.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+
+        // Fade-in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.style.animation = 'fadeInUp 1s ease-out';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.level-card, .explanation-item').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
