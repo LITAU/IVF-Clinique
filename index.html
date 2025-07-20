@@ -111,25 +111,21 @@
         }
 
         .tableau-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
             margin-bottom: 2rem;
         }
 
         .tableau-embed {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
+            width: 100%;
+            height: 600px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         .tableau-embed div {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
         }
@@ -137,7 +133,7 @@
         .tableau-embed h3 {
             font-size: 1.5rem;
             color: #333;
-            margin-bottom: 0.5rem;
+            margin: 1rem 0 0.5rem;
             text-align: center;
         }
 
@@ -146,6 +142,9 @@
             color: #666;
             text-align: center;
             margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Hierarchy Levels */
@@ -218,7 +217,6 @@
             background: #f9fafb;
             padding: 1.5rem;
             border-radius: 8px;
-            cursor: pointer;
             transition: background 0.3s ease;
         }
 
@@ -288,8 +286,8 @@
                 margin-left: 0;
             }
 
-            .tableau-container {
-                grid-template-columns: 1fr;
+            .tableau-embed {
+                height: 400px;
             }
 
             .hierarchy-levels {
@@ -315,71 +313,71 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div>
-            <h1>Advanced Tableau Analytics</h1>
-            <p>Unlock insights with our integrated Tableau dashboards across operative, administrative, and simulative analytics.</p>
+            <h1>Tableau-Powered Analytics</h1>
+            <p>Explore operative, administrative, and simulative insights through our interactive Tableau dashboards.</p>
         </div>
     </section>
 
     <!-- Dashboard Section -->
     <section class="dashboard-section" id="dashboard">
-        <h2>Tableau Analytics Dashboards</h2>
-        <p class="subtitle">Explore three specialized Tableau visualizations for comprehensive insights</p>
+        <h2>Interactive Tableau Dashboards</h2>
+        <p class="subtitle">Dive into our specialized visualizations for comprehensive data analysis</p>
         <div class="tableau-container">
             <div class="tableau-embed">
                 <h3>Operative Dashboard</h3>
-                <p>Real-time insights into daily operations</p>
+                <p>Visualizes real-time operational metrics, such as daily task completion rates and resource utilization, to optimize on-the-ground processes.</p>
                 <div id="operativeViz"></div>
             </div>
             <div class="tableau-embed">
                 <h3>Administrative Dashboard</h3>
-                <p>Strategic oversight for managerial decisions</p>
+                <p>Displays managerial metrics like budget allocation, departmental performance, and compliance status to support strategic oversight.</p>
                 <div id="administrativeViz"></div>
             </div>
             <div class="tableau-embed">
                 <h3>Simulative Dashboard</h3>
-                <p>Forecasting and scenario analysis</p>
+                <p>Provides forecasting and scenario analysis, showing projected outcomes based on variable inputs to aid in planning and risk assessment.</p>
                 <div id="simulativeViz"></div>
             </div>
         </div>
 
         <!-- Hierarchy Levels -->
-        <h2>Data Hierarchy Overview</h2>
-        <p class="subtitle">Understand insights across three levels of analysis</p>
+        <h2>Data Hierarchy Levels</h2>
+        <p class="subtitle">Understand the structure of our analytics approach</p>
         <div class="hierarchy-levels">
             <div class="level-card">
                 <i class="fas fa-chart-pie"></i>
-                <h3>Strategic Level</h3>
-                <p>Executive insights for long-term planning and decision-making.</p>
+                <h3>Administrative Level</h3>
+                <p>High-level insights for strategic planning and managerial oversight.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-bar"></i>
-                <h3>Tactical Level</h3>
-                <p>Departmental metrics to optimize mid-term strategies.</p>
+                <h3>Simulative Level</h3>
+                <p>Predictive analytics for forecasting and scenario planning.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-line"></i>
-                <h3>Operational Level</h3>
-                <p>Detailed analytics for daily process optimization.</p>
+                <h3>Operative Level</h3>
+                <p>Real-time data for daily operational efficiency.</p>
             </div>
         </div>
     </section>
 
     <!-- Interactive Explanation Section -->
     <section class="explanation-section" id="insights">
-        <h2>Insights & Guidance</h2>
-        <p class="subtitle">Resources to enhance your data analytics experience</p>
+        <h2>Dashboard Interpretations</h2>
+        <p class="subtitle">Detailed guidance on understanding and utilizing each Tableau dashboard</p>
         <div class="explanation-content">
             <div class="explanation-item">
-                <h3>Interpreting Operative Data</h3>
-                <p>Guide to understanding real-time operational metrics in Tableau.</p>
+                <h3>Operative Dashboard Guide</h3>
+                <p>The Operative Dashboard tracks real-time metrics like task completion rates, employee productivity, and resource allocation. Use the interactive filters to drill down into specific teams or timeframes, enabling quick identification of bottlenecks and optimization opportunities.</p>
             </div>
             <div class="explanation-item">
-                <h3>Administrative Analytics Tips</h3>
-                <p>Best practices for leveraging administrative dashboards for decision-making.</p>
+                <h3>Administrative Dashboard Guide</h3>
+                <p>This dashboard provides a managerial overview, displaying key metrics such as budget utilization, departmental KPIs, and compliance trends. Hover over charts to view detailed breakdowns and use dropdowns to compare performance across departments for informed decision-making.</p>
             </div>
             <div class="explanation-item">
-                <h3>Simulative Forecasting</h3>
-                <p>How to use simulative dashboards for predictive analytics.</p>
+                <h3>Simulative Dashboard Guide</h3>
+                <p>The Simulative Dashboard offers predictive insights through scenario analysis. Adjust variables like market conditions or resource inputs to see projected outcomes. This tool helps in strategic planning by visualizing potential risks and opportunities based on data-driven forecasts.</p>
             </div>
         </div>
     </section>
@@ -439,15 +437,6 @@
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
                 });
-            });
-        });
-
-        // Interactive explanation toggle
-        document.querySelectorAll('.explanation-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-                const p = item.querySelector('p');
-                p.style.display = p.style.display === 'none' ? 'block' : 'none';
             });
         });
 
