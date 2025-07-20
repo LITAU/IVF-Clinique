@@ -120,7 +120,7 @@
             margin-bottom: 2rem;
         }
 
-        .tableau-embed iframe {
+        .tableau-embed div {
             position: absolute;
             top: 0;
             left: 0;
@@ -291,67 +291,88 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div>
-            <h1>Welcome to Our Data Analytics Platform</h1>
-            <p>Unlock powerful insights with our interactive Tableau dashboards and stay informed with real-time data explanations.</p>
+            <h1>Explore Data with Tableau Analytics</h1>
+            <p>Discover actionable insights through our integrated Tableau visualizations and stay informed with our interactive guides.</p>
         </div>
     </section>
 
     <!-- Dashboard Section -->
     <section class="dashboard-section" id="dashboard">
-        <h2>Interactive Data Dashboard</h2>
-        <p class="subtitle">Explore our Tableau visualizations for comprehensive data insights</p>
+        <h2>Tableau Data Dashboard</h2>
+        <p class="subtitle">Interactive visualizations powered by Tableau Public</p>
         <div class="tableau-embed">
-            <!-- Replace with your Tableau Public embed URL -->
-            <iframe src="https://public.tableau.com/views/ProjectAd/Administrative?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" frameborder="0"></iframe>
+            <div id="tableauViz"></div>
         </div>
 
         <!-- Hierarchy Levels -->
+        <h2>Data Hierarchy Overview</h2>
+        <p class="subtitle">Explore data insights across three levels of analysis</p>
         <div class="hierarchy-levels">
             <div class="level-card">
                 <i class="fas fa-chart-pie"></i>
                 <h3>Strategic Level</h3>
-                <p>High-level KPIs and executive summaries for decision-makers.</p>
+                <p>Executive insights for high-level decision-making and long-term planning.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-bar"></i>
                 <h3>Tactical Level</h3>
-                <p>Departmental metrics and operational insights for managers.</p>
+                <p>Departmental metrics to optimize mid-term strategies and operations.</p>
             </div>
             <div class="level-card">
                 <i class="fas fa-chart-line"></i>
                 <h3>Operational Level</h3>
-                <p>Detailed analytics for day-to-day activities and processes.</p>
+                <p>Detailed analytics for daily processes and performance tracking.</p>
             </div>
         </div>
     </section>
 
     <!-- Interactive Explanation Section -->
     <section class="explanation-section" id="insights">
-        <h2>Insights & Guidance</h2>
-        <p class="subtitle">Stay updated with data-driven news and actionable tips</p>
+        <h2>Insights & Resources</h2>
+        <p class="subtitle">Guides and tips to maximize your data analytics experience</p>
         <div class="explanation-content">
             <div class="explanation-item">
-                <h3>Understanding KPIs</h3>
-                <p>Learn how to interpret key performance indicators to drive business success.</p>
+                <h3>Mastering Tableau Dashboards</h3>
+                <p>Learn how to create and interpret interactive Tableau visualizations effectively.</p>
             </div>
             <div class="explanation-item">
-                <h3>Data Trends 2025</h3>
-                <p>Explore the latest trends in data analytics and their impact on your industry.</p>
+                <h3>2025 Data Trends</h3>
+                <p>Stay ahead with the latest trends shaping data analytics across industries.</p>
             </div>
             <div class="explanation-item">
-                <h3>Optimizing Visualizations</h3>
-                <p>Tips for creating effective and engaging Tableau dashboards.</p>
+                <h3>Actionable Insights</h3>
+                <p>Practical tips for turning data into strategic business decisions.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <p>&copy; 2025 Analytics Hub. All rights reserved.</p>
+        <p>© 2025 Analytics Hub. All rights reserved.</p>
         <p><a href="mailto:info@analyticshub.com">Contact Us</a> | <a href="#privacy">Privacy Policy</a></p>
     </footer>
 
+    <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
     <script>
+        // Initialize Tableau Visualization
+        function initViz() {
+            const containerDiv = document.getElementById("tableauViz");
+            const vizUrl = "https://public.tableau.com/views/SuperstoreSalesOverview/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link";
+            const options = {
+                width: "100%",
+                height: "100%",
+                hideTabs: true,
+                hideToolbar: true,
+                onFirstInteractive: function () {
+                    console.log("Tableau visualization loaded.");
+                }
+            };
+            new tableau.Viz(containerDiv, vizUrl, options);
+        }
+
+        // Load Tableau viz on page load
+        window.onload = initViz;
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
